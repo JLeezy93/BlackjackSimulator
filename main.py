@@ -2,20 +2,41 @@ import collections
 import random
 
 deck = [
-    'A', 'A', 'A', 'A',
-    'K', 'K', 'K', 'K',
-    'Q', 'Q', 'Q', 'Q',
-    'J', 'J', 'J', 'J',
-    '10', '10', '10', '10',
-    '9', '9', '9', '9',
-    '8', '8', '8', '8',
-    '7', '7', '7', '7',
-    '6', '6', '6', '6',
-    '5', '5', '5', '5',
-    '4', '4', '4', '4',
-    '3', '3', '3', '3',
-    '2', '2', '2', '2'
+    'AH', 'AD', 'AS', 'AC',
+    'KH', 'KD', 'KS', 'KC',
+    'QH', 'QD', 'QS', 'QC',
+    'JH', 'JD', 'JS', 'JC',
+    '10H', '10D', '10S', '10C',
+    '9H', '9D', '9S', '9C',
+    '8H', '8D', '8S', '8C',
+    '7H', '7D', '7S', '7C',
+    '6H', '6D', '6S', '6C',
+    '5H', '5D', '5S', '5C',
+    '4H', '4D', '4S', '4C',
+    '3H', '3D', '3S', '3C',
+    '2H', '2D', '2S', '2C'
 ]
+# Deal hand
+player_hand = random.choices(deck, k=2)
+
+
+# remove cards dealt from deck
+def remove_cards_dealt():
+    for cards_in_hand in player_hand:
+        for card in deck:
+            if card == cards_in_hand:
+                deck.remove(card)
+
+    print('Cards in deck: ' + str(len(deck)))
+
+
+def hit_or_stay():
+    input('Would you like to hit or stay?')
+    if 'hit':
+        player_hand.append(random.choice(deck))
+        remove_cards_dealt()
+        print(player_hand)
+
 
 # Function to calculate the odds of a blackjack hand
 def blackjack_odds(hand):
@@ -44,5 +65,9 @@ def blackjack_odds(hand):
 
 
 # Example usage
-hand = ['A', 'K']
-print(blackjack_odds(hand))
+# hand = ['A', 'K']
+# print(blackjack_odds(hand))
+print(player_hand)
+print('Cards in deck: ' + str(len(deck)))
+remove_cards_dealt()
+hit_or_stay()
